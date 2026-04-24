@@ -34,7 +34,7 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_QueryOrder = ["_DBRServer","_DBRPath","_DBRCatalog","_FilterRows","RangeStart","RangeEnd","_SP_Site","SP_Source","RTT","Date","DatePeriod"]
 
-annotation PBI_ProTooling = ["TMDLView_Desktop"]
+annotation PBI_ProTooling = ["TMDLView_Desktop","DevMode"]
 
 annotation __TEdtr = 1
 
