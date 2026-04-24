@@ -1,0 +1,14 @@
+relationship 41a729a2-8218-b25c-b245-ff789dd7051b
+	toCardinality: many
+	fromColumn: Date.Date
+	toColumn: DatePeriod.Date
+
+relationship 8b0721ad-1c2d-1219-2758-540fbe19c0ec
+	isActive: false
+	fromColumn: Date.Date
+	toColumn: DateFlex.'Flex YA Date'
+
+relationship c58a6bf3-7600-8eed-3464-9735ef9e7bd2
+	fromColumn: RTT.trans_date
+	toColumn: Date.Date
+

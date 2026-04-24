@@ -1,0 +1,88 @@
+table V_Meta
+	lineageTag: 64bace22-8a0e-4eec-8a11-98f6d4b05a20
+
+	column Type
+		lineageTag: 49b63ac7-74bb-4cf6-8a4f-a1803afd642c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		lineageTag: 4440021c-480a-47b6-b20a-75b146eefb51
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		lineageTag: a7462631-6fa8-4140-82dd-95f784e5ac4d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Description]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		lineageTag: f22f0ab1-d905-4bb0-af9d-fbba4edf7724
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Location]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Expression
+		lineageTag: 5debb06f-1ab8-4013-a796-ade343d9ae20
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Expression]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition V_Meta = calculated
+		mode: import
+		source =
+				
+				VAR _columns =
+				    SELECTCOLUMNS(
+				        FILTER(INFO.VIEW.COLUMNS(),NOT ISBLANK([Expression])),
+				        "Type", "Column",
+				        "Name", [Name],
+				        "Description", [Description],
+				        "Location", [Table],
+				        "Expression", [Expression]
+				    )
+				VAR _measures =
+				    SELECTCOLUMNS(
+				        FILTER(INFO.VIEW.MEASURES(),NOT ISBLANK([Expression])),
+				        "Type", "Measure",
+				        "Name", [Name],
+				        "Description", [Description],
+				        "Location", [Table],
+				        "Expression", [Expression]
+				    )
+				VAR _tables =
+				    SELECTCOLUMNS(
+				        FILTER(INFO.VIEW.TABLES(),NOT ISBLANK([Expression])),
+				        "Type", "Table",
+				        "Name", [Name],
+				        "Description", [Description],
+				        "Location", BLANK( ),
+				        "Expression", [Expression]
+				    )
+				VAR _relationships =
+				    SELECTCOLUMNS(
+				        INFO.VIEW.RELATIONSHIPS( ),
+				        "Type", "Relationship",
+				        "Name", [Relationship],
+				        "Description", BLANK( ),
+				        "Location", BLANK( ),
+				        "Expression", [Relationship]
+				    )
+				RETURN
+				    UNION( _columns, _measures, _tables )
+
+	annotation PBI_Id = 7d30cc591fde436bac9ea1efcbffe718
+

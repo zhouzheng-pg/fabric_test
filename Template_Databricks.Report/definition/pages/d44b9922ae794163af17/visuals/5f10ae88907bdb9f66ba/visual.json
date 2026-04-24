@@ -1,0 +1,81 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "5f10ae88907bdb9f66ba",
+  "position": {
+    "x": 272,
+    "y": 208,
+    "z": 2000,
+    "height": 463.99999999999994,
+    "width": 368.00000000000006,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "T1_Increment"
+                    }
+                  },
+                  "Property": "category_code"
+                }
+              },
+              "queryRef": "T1_Increment.category_code",
+              "nativeQueryRef": "category_code"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "T1_Increment"
+                    }
+                  },
+                  "Property": "Row#"
+                }
+              },
+              "queryRef": "T1_Increment.Row#",
+              "nativeQueryRef": "Row#"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DateFlex"
+                    }
+                  },
+                  "Property": "Rows Flex"
+                }
+              },
+              "queryRef": "DateFlex.Rows Flex",
+              "nativeQueryRef": "Rows Flex"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

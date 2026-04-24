@@ -1,0 +1,55 @@
+expression _DBRServer = "adb-6166818014713788.0.databricks.azure.cn" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: f08f768f-75a9-4008-9611-b4912dda306d
+	queryGroup: Parameter
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression _DBRPath = "/sql/1.0/warehouses/f2ed516212c746dd" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: b4bc70da-5609-4014-848b-9283464f60b0
+	queryGroup: Parameter
+
+	annotation PBI_ResultType = Text
+
+expression _DBRCatalog = "bi_gm_prd" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: dc833f08-5ff6-4278-8912-fd65f7ad1da9
+	queryGroup: Parameter
+
+	annotation PBI_ResultType = Text
+
+expression _FilterRows = 0 meta [IsParameterQuery=true, Type="Number", IsParameterQueryRequired=true]
+	lineageTag: 11ce926d-3037-44b1-ae0d-1b2b66c25c25
+	queryGroup: Parameter
+
+	annotation PBI_ResultType = Number
+
+expression RangeStart = #datetime(2025, 7, 1, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: c46f8c2c-725b-4de1-8c76-57e3e392565f
+	queryGroup: Parameter
+
+	annotation PBI_ResultType = DateTime
+
+expression RangeEnd = #datetime(2025, 12, 31, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 2d1c32de-297c-415c-b242-5a4d96db737b
+	queryGroup: Parameter
+
+	annotation PBI_ResultType = DateTime
+
+expression _SP_Site = "https://pgone.sharepoint.com/sites/zz_test" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: d7f4114b-32cb-4a40-90b4-4e7b6e9c5b7e
+	queryGroup: Parameter
+
+	annotation PBI_ResultType = Text
+
+expression SP_Source =
+		let
+		    Source = SharePoint.Contents(_SP_Site, [ApiVersion = 15]),
+		    SelectFolder = Source{[Name="BI"]}[Content]
+		in
+		    SelectFolder
+	lineageTag: 052292b7-e5d5-4be1-9a26-6cc8f3ec191c
+	queryGroup: Parameter
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,105 @@
+table DatePeriod
+	lineageTag: 133558e7-ddf3-45f9-a34a-cb72a2380ff7
+
+	column Period
+		dataType: string
+		lineageTag: 89f85e64-420a-4cda-a80b-3a99996cf07e
+		summarizeBy: none
+		sourceColumn: Period
+		sortByColumn: Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ac6c2e4b-85d5-481f-8e17-db0d3f83d458
+		summarizeBy: none
+		sourceColumn: Sort
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column StartDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 923add27-baed-4710-abc1-ae86c6710460
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column EndDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 85d79d42-3709-472c-9999-47b891aa58a9
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Date
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		isAvailableInMdx: false
+		lineageTag: f232a3ca-be5a-4dc5-bee5-9e631a67eb66
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition DatePeriod = m
+		mode: import
+		source =
+				let
+				    _Today = Date.From(DateTime.FixedLocalNow()),
+				    _FYear = if Date.Month(_Today) <=6 then Date.Year(_Today)-1 else Date.Year(_Today),
+				    Periods = {
+				         { "MTD",  1, Date.StartOfMonth(_Today),   _Today }
+				        ,{ "QTD",  2, Date.StartOfQuarter(_Today), _Today }
+				        ,{ "FYTD", 3, #date(_FYear, 7, 1),         _Today }
+				        ,{ "CYTD", 4, Date.StartOfYear(_Today),    _Today }
+				        ,{ "P1M",  5, Date.StartOfMonth(Date.AddMonths(_Today,-1)),  Date.EndOfMonth(Date.AddMonths(_Today,-1)) }
+				        ,{ "P3M",  6, Date.StartOfMonth(Date.AddMonths(_Today,-3)),  Date.EndOfMonth(Date.AddMonths(_Today,-1)) }
+				        ,{ "P6M",  7, Date.StartOfMonth(Date.AddMonths(_Today,-6)),  Date.EndOfMonth(Date.AddMonths(_Today,-1)) }
+				        ,{ "P12M", 8, Date.StartOfMonth(Date.AddMonths(_Today,-12)), Date.EndOfMonth(Date.AddMonths(_Today,-1)) }
+				    },
+				    ToTable = Table.FromRows(
+				        Periods,
+				        type table [Period = text, Sort = Int64.Type, StartDate = date, EndDate = date]
+				    ),
+				    GenerateDate = List.TransformMany(
+				        Table.ToRecords(ToTable),
+				        (x) => {Number.From(x[StartDate])..Number.From(x[EndDate])},
+				        (x,y) =>  Record.Combine( { x, [Date = Date.From(y)] } )
+				    ),
+				    Result = Table.FromRecords(
+				        GenerateDate,
+				        type table [Period = text, Sort = Int64.Type, StartDate = date, EndDate = date, Date = date]
+				    )
+				in
+				    Result
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,25 @@
+function 'pbi.PG_format' =
+		() =>
+		VAR _selected_format = SELECTEDVALUE('V_Unit'[Unit], "Base")
+		RETURN
+			SWITCH(TRUE()
+				,_selected_format = "MM",   "#,0,,.0;-#,0,,.0;0"
+				,_selected_format = "M",    "#,0,.0;-#,0,.0;0"
+				,_selected_format = "Base", "#,0;-#,0,0"
+			)
+	lineageTag: afb812b8-f143-4dc2-b35b-f6440054ef39
+
+function 'pbi.Number_format' =
+		() =>
+		VAR _absValue = ABS(SELECTEDMEASURE())
+		VAR _fstring =
+			SWITCH(TRUE(),
+				_absValue >= 1e9,  "#,##0,,,.0B",
+				_absValue >= 1e6,  "#,##0,,.0M",
+				_absValue >= 1e3,  "#,##0,.K",
+				"#,##0"
+			)
+		RETURN
+			_fstring
+	lineageTag: c1213691-9751-4a7e-b4fd-b6074cf4a55a
+

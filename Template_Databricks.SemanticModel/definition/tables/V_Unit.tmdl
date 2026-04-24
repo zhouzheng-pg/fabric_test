@@ -1,0 +1,43 @@
+table V_Unit
+	lineageTag: 481e46f2-06b5-47eb-8d57-fe4d2a259599
+
+	column Unit
+		lineageTag: 8dfa1f89-89db-424e-969e-0f2f38aa8260
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Unit]
+		sortByColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		isHidden
+		formatString: 0
+		lineageTag: fbe34fb4-0d70-4b93-a503-7ca765298a22
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Sort]
+
+		annotation SummarizationSetBy = User
+
+	column Format
+		lineageTag: 253f019b-1503-4db7-8459-d99ac48483ac
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Format]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition V_Unit = calculated
+		mode: import
+		source =
+				DATATABLE("Unit",STRING,"Sort",INTEGER,"Format",STRING,
+				    {
+				        {"MM",1,"#,0,,.0;-#,0,,.0;0"},
+				        {"M",2,"#,0,.0;-#,0,.0;0"},
+				        {"Base",3,"#,0;-#,0,0"}
+				    }
+				)
+
+	annotation PBI_Id = d3fbdb312c99461bbacff2a44e78403a
+

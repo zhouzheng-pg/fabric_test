@@ -1,0 +1,50 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Parameter
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Fact
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup Dim
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup Lookup
+
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup Security
+
+	annotation PBI_QueryGroupOrder = 4
+
+queryGroup Manual
+
+	annotation PBI_QueryGroupOrder = 5
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["_DBRServer","_DBRPath","_DBRCatalog","_FilterRows","RangeStart","RangeEnd","_SP_Site","SP_Source","RTT","Date","DatePeriod"]
+
+annotation PBI_ProTooling = ["TMDLView_Desktop"]
+
+annotation __TEdtr = 1
+
+ref table RTT
+ref table V_Meta
+ref table Date
+ref table V_Date
+ref table DateFlex
+ref table V_Unit
+ref table DatePeriod
+
+ref cultureInfo en-US
+

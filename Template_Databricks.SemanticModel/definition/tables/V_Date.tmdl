@@ -1,0 +1,52 @@
+table V_Date
+	lineageTag: eb58b81a-4f34-486f-8ba7-a1350d2f95b2
+
+	column V_Date
+		lineageTag: 879ac55b-95e0-4ccd-b7f0-a08c759aa9ee
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: sort
+
+		relatedColumnDetails
+			groupByColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		isHidden
+		lineageTag: 32899a69-1f1b-4b9d-9242-dacfeda28896
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: sort
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column sort
+		isHidden
+		formatString: 0
+		lineageTag: 0e6602a1-f440-4476-a633-aab907d3f2d8
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition V_Date = calculated
+		mode: import
+		source =
+				{
+				    ("Year", NAMEOF('Date'[Year]), 0),
+				    ("CY Half", NAMEOF('Date'[YearHalf]), 1),
+				    ("FY", NAMEOF('Date'[FY]), 2),
+				    ("FY Half", NAMEOF('Date'[FYHalf]), 3),
+				    ("FYQuarter", NAMEOF('Date'[FYQuarter]), 4),
+				    ("YearMonth", NAMEOF('Date'[YearMonth]), 5)
+				}
+
+	annotation PBI_Id = 5356638f77c94a2b8fe8e5bdb88f4bfd
+

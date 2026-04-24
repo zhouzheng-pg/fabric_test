@@ -1,0 +1,817 @@
+/// Calendar
+table Date
+	lineageTag: 5802bb5e-1759-4097-a226-ea6439a40428
+	dataCategory: Time
+
+	measure 'Select Date' = MIN('Date'[Date]) &"-"& MAX('Date'[Date])
+		lineageTag: b7b4beb5-e7a7-4203-89fc-4ff28de00bf9
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: yyyy-mm-dd
+		lineageTag: 0f4c5767-52d2-4cb4-afe5-c67d408d8dc1
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 51f186bb-bab2-4202-9ab5-d7bdf4f83784
+		summarizeBy: none
+		sourceColumn: Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		dataType: string
+		lineageTag: 3dbe1cba-9984-40ed-9206-718a31c1adbb
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: Months
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start of Month'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		isAvailableInMdx: false
+		displayFolder: Offset
+		lineageTag: b2451710-1c5d-4730-8b68-e6158fd440a4
+		summarizeBy: none
+		sourceColumn: Start of Month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'End of Month'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		isAvailableInMdx: false
+		displayFolder: Offset
+		lineageTag: b3f40a15-6e23-4b62-ad36-7c2a44caa917
+		summarizeBy: none
+		sourceColumn: End of Month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Day of Week'
+		dataType: int64
+		formatString: 0
+		displayFolder: Of
+		lineageTag: 676c7212-d361-4b2d-afe5-2150eb022fe1
+		summarizeBy: none
+		sourceColumn: Day of Week
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Day of Year'
+		dataType: int64
+		formatString: 0
+		isAvailableInMdx: false
+		displayFolder: Of
+		lineageTag: e2350ec3-10ad-43df-ac75-860c1e493ba5
+		summarizeBy: none
+		sourceColumn: Day of Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Quarter
+		dataType: string
+		lineageTag: f79359af-43fd-4a72-ac91-e1aed6a6520c
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start of Quarter'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		isAvailableInMdx: false
+		displayFolder: Offset
+		lineageTag: 7104ff13-5876-44ba-b86b-f24a65e884d9
+		summarizeBy: none
+		sourceColumn: Start of Quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'End of Quarter'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		isAvailableInMdx: false
+		displayFolder: Offset
+		lineageTag: 82d1b509-f88a-4eea-9cfa-1ef121584a48
+		summarizeBy: none
+		sourceColumn: End of Quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Week of Year'
+		dataType: int64
+		formatString: 0
+		displayFolder: Of
+		lineageTag: a48db439-c4b5-4808-b47b-c6ee33c0363a
+		summarizeBy: none
+		sourceColumn: Week of Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Week of Month'
+		dataType: int64
+		formatString: 0
+		isAvailableInMdx: false
+		displayFolder: Of
+		lineageTag: edf0bdbf-2ce2-4a18-9866-98c6f297cdb8
+		summarizeBy: none
+		sourceColumn: Week of Month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Start of Week'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		isAvailableInMdx: false
+		displayFolder: Offset
+		lineageTag: df944ae7-3140-4daa-af4b-4db42b2b9585
+		summarizeBy: none
+		sourceColumn: Start of Week
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'End of Week'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		isAvailableInMdx: false
+		displayFolder: Offset
+		lineageTag: 15d1390a-064f-4647-9889-070db6180a69
+		summarizeBy: none
+		sourceColumn: End of Week
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Month Offset'
+		dataType: int64
+		formatString: 0
+		isAvailableInMdx: false
+		displayFolder: Offset
+		lineageTag: 256b8fd8-2796-4a2d-a5b2-7f8948627b8d
+		summarizeBy: none
+		sourceColumn: Month Offset
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Year Offset'
+		dataType: int64
+		formatString: 0
+		isAvailableInMdx: false
+		displayFolder: Offset
+		lineageTag: f449d3f8-a9a3-4d8e-9059-4e75d28a6a53
+		summarizeBy: none
+		sourceColumn: Year Offset
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Quarter Offset'
+		dataType: int64
+		formatString: 0
+		isAvailableInMdx: false
+		displayFolder: Offset
+		lineageTag: 2739d717-780b-4ee8-801c-bade597e7563
+		summarizeBy: none
+		sourceColumn: Quarter Offset
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Day Offset'
+		dataType: int64
+		formatString: 0
+		isAvailableInMdx: false
+		displayFolder: Offset
+		lineageTag: 55a1a6af-0fea-4b2a-bb6b-281744505e63
+		summarizeBy: none
+		sourceColumn: Day Offset
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column YearMonth
+		dataType: int64
+		formatString: 0
+		lineageTag: fde09ee8-4e78-4b46-b88f-6fd567cfa32d
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Months
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7eb49f81-455b-4730-a32f-ec0b09e16e31
+		summarizeBy: none
+		sourceColumn: Months
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column WeekDay
+		dataType: string
+		displayFolder: Of
+		lineageTag: d1fe9c07-87dc-43ee-969c-e2a8bc8e10e7
+		summarizeBy: none
+		sourceColumn: WeekDay
+		sortByColumn: 'Day of Week'
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarters
+		dataType: int64
+		isHidden
+		formatString: 0
+		isAvailableInMdx: false
+		lineageTag: 91320c3f-2391-4bc3-a237-57fddf19ffc1
+		summarizeBy: none
+		sourceColumn: Quarters
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Days in Month'
+		dataType: int64
+		isHidden
+		formatString: 0
+		isAvailableInMdx: false
+		lineageTag: 1994c9c0-2ab4-4527-afa1-c5f0f122b167
+		summarizeBy: none
+		sourceColumn: Days in Month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column Week
+		dataType: string
+		lineageTag: 414dc736-62f4-405b-bc57-58f115f7e5af
+		summarizeBy: none
+		sourceColumn: Week
+		sortByColumn: 'Week of Year'
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column YYMM
+		dataType: string
+		lineageTag: 34c5bc06-f409-45cd-88aa-8c8f81ea6b0f
+		summarizeBy: none
+		sourceColumn: YYMM
+		sortByColumn: YearMonth
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_MTD
+		dataType: string
+		lineageTag: d1fac009-d40e-4c2f-8c6b-2fa448260250
+		summarizeBy: none
+		sourceColumn: Is_MTD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_QTD
+		dataType: string
+		lineageTag: 5772eb8c-bb8f-4d02-83f4-646b9d20f72f
+		summarizeBy: none
+		sourceColumn: Is_QTD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_YTD
+		dataType: string
+		lineageTag: 21017360-c7cc-4a00-ad45-60973a0f8957
+		summarizeBy: none
+		sourceColumn: Is_YTD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_Weekend
+		dataType: string
+		lineageTag: a8599869-db77-47b0-9795-35f33afe3846
+		summarizeBy: none
+		sourceColumn: Is_Weekend
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FYear
+		dataType: string
+		lineageTag: d4c7ef28-22c6-41c1-87a5-f5cfd229bb9c
+		summarizeBy: none
+		sourceColumn: FYear
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FQuarter
+		dataType: string
+		lineageTag: e9ba7d21-57a0-41a7-b707-2759d023f5bb
+		summarizeBy: none
+		sourceColumn: FQuarter
+		sortByColumn: FQuarters
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FQuarters
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e6cb113f-2aa7-48e8-94f9-b8e69eb14458
+		summarizeBy: none
+		sourceColumn: FQuarters
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column FYQuarter
+		dataType: string
+		lineageTag: 4e5b802b-b624-44b1-8d92-22b998d5182f
+		summarizeBy: none
+		sourceColumn: FYQuarter
+		sortByColumn: YearQuarters
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearQuarter
+		dataType: string
+		lineageTag: 01bf0132-f9a4-4787-bab7-1f1d13de0877
+		summarizeBy: none
+		sourceColumn: YearQuarter
+		sortByColumn: YearQuarters
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearWeek
+		dataType: string
+		lineageTag: 531adb83-52b1-4389-b639-0d5364ebc453
+		summarizeBy: none
+		sourceColumn: YearWeek
+		sortByColumn: YearWeeks
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearWeeks
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 507d1ef5-a49c-4fe6-bd05-28e7f05977b2
+		summarizeBy: none
+		sourceColumn: YearWeeks
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Week Offset'
+		dataType: int64
+		formatString: 0
+		displayFolder: Offset
+		lineageTag: b14f0549-08fb-4ef2-be10-48feb0effba9
+		summarizeBy: none
+		sourceColumn: Week Offset
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column FY
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 6c330218-9359-48e4-b9b1-b49b2af752d5
+		summarizeBy: none
+		sourceColumn: FY
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_FYTD
+		dataType: string
+		lineageTag: da0761af-9615-4508-9dec-2ec28ce6db70
+		summarizeBy: none
+		sourceColumn: Is_FYTD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Month'
+		dataType: int64
+		formatString: 0
+		displayFolder: Of
+		lineageTag: 57096a1a-10f9-4e32-a760-00dfa861eb89
+		summarizeBy: none
+		sourceColumn: Day of Month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Day of Quarter'
+		dataType: int64
+		formatString: 0
+		displayFolder: Of
+		lineageTag: df01e9df-0912-44d1-91b9-08e3d495fb47
+		summarizeBy: none
+		sourceColumn: Day of Quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column 'Week of Quarter'
+		dataType: int64
+		formatString: 0
+		displayFolder: Of
+		lineageTag: 40d598e0-6512-4a1b-a64a-ede21fcaf3da
+		summarizeBy: none
+		sourceColumn: Week of Quarter
+
+		annotation SummarizationSetBy = User
+
+	column 'Month of Quarter'
+		dataType: int64
+		formatString: 0
+		displayFolder: Of
+		lineageTag: ae108bc1-b32b-427c-b186-b8aafaf5f070
+		summarizeBy: none
+		sourceColumn: Month of Quarter
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column YearHalf
+		dataType: string
+		lineageTag: 89afdea6-e540-46da-bf78-622b4d40a92b
+		summarizeBy: none
+		sourceColumn: YearHalf
+
+		annotation SummarizationSetBy = Automatic
+
+	column FYHalf
+		dataType: string
+		lineageTag: f2bb7752-0ffd-41a3-b579-013c1b7e87bb
+		summarizeBy: none
+		sourceColumn: FYHalf
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonths
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 42b89314-3ab1-49dd-bd52-62a9932df360
+		summarizeBy: none
+		sourceColumn: YearMonths
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column YearQuarters
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 400c8261-7d62-489c-b986-aa24ff97fb49
+		summarizeBy: none
+		sourceColumn: YearQuarters
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column DatesWithSales = 'Date'[Date]<=MAX('RTT'[trans_date])
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a7738392-e5ce-414d-a323-59fbb4fe2f88
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column YMonth
+		dataType: string
+		lineageTag: 933e659e-009f-41db-8647-f239f5bc5046
+		summarizeBy: none
+		sourceColumn: YMonth
+		sortByColumn: YearMonths
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column YM
+		dataType: dateTime
+		formatString: yyyy-mm
+		lineageTag: 7b478a97-f6c2-46b9-94f7-6d49eb0a3179
+		summarizeBy: none
+		sourceColumn: YM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Is_T-1
+		dataType: string
+		lineageTag: feef3862-db55-488e-9c88-4bd4e68314a3
+		summarizeBy: none
+		sourceColumn: Is_T-1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = m
+		mode: import
+		source =
+				let
+				    Today=Date.From(DateTime.LocalNow()),
+				    FromYear=Date.Year(Today)-2,
+				    ToYear=Date.Year(Today),
+				    firstDayofWeek=Day.Monday,
+				    FromDate=#date(FromYear,1,1),
+				    ToDate=Today, //#date(ToYear,12,31)
+				    Source=List.Dates(
+				        FromDate,
+				        Duration.Days(ToDate-FromDate)+1,
+				        #duration(1,0,0,0)
+				    ),
+				    #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Column1", "Date"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Date", type date}}),
+				    #"Inserted Year" = Table.AddColumn(#"Changed Type", "Year", each Date.Year([Date]), Int64.Type),
+				    #"Inserted Month" = Table.AddColumn(#"Inserted Year", "Months", each Date.Month([Date]), Int64.Type),
+				    #"Inserted Start of Month" = Table.AddColumn(#"Inserted Month", "Start of Month", each Date.StartOfMonth([Date]), type date),
+				    #"Inserted End of Month" = Table.AddColumn(#"Inserted Start of Month", "End of Month", each Date.EndOfMonth([Date]), type date),
+				    #"Inserted Days in Month" = Table.AddColumn(#"Inserted End of Month", "Days in Month", each Date.DaysInMonth([Date]), Int64.Type),
+				    #"Inserted Day" = Table.AddColumn(#"Inserted Days in Month", "Day of Month", each Date.Day([Date]), Int64.Type),
+				    #"Inserted Day Name" = Table.AddColumn(#"Inserted Day", "WeekDay", each Date.DayOfWeekName([Date]), type text),
+				    #"Extracted Text Range1" = Table.TransformColumns(#"Inserted Day Name", {{"WeekDay", each Text.Middle(_, 0, 3), type text}}),
+				    #"Inserted Day of Week" = Table.AddColumn(#"Extracted Text Range1", "Day of Week", each Date.DayOfWeek([Date],firstDayofWeek)+1, Int64.Type),
+				    Is_Weekend = Table.AddColumn(#"Inserted Day of Week", "Is_Weekend", each if [Day of Week] > 5 then "Y" else "N"),
+				    #"Inserted Day of Year" = Table.AddColumn(Is_Weekend, "Day of Year", each Date.DayOfYear([Date]), Int64.Type),
+				    Month = Table.AddColumn(#"Inserted Day of Year", "Month", each Date.ToText([Date],"MMM")),
+				    #"Inserted Quarters" = Table.AddColumn(Month, "Quarters", each Date.QuarterOfYear([Date])),
+				    #"Inserted Quarter" = Table.AddColumn(#"Inserted Quarters", "Quarter", each "Q"&Number.ToText([Quarters])),
+				    YearQuarter = Table.AddColumn(#"Inserted Quarter", "YearQuarter", each Number.ToText([Year])&[Quarter]),
+				    #"Inserted Start of Quarter" = Table.AddColumn(YearQuarter, "Start of Quarter", each Date.StartOfQuarter([Date]), type date),
+				    #"Inserted End of Quarter" = Table.AddColumn(#"Inserted Start of Quarter", "End of Quarter", each Date.EndOfQuarter([Date]), type date),
+				    #"Inserted Week of Year" = Table.AddColumn(#"Inserted End of Quarter", "Week of Year", each Date.WeekOfYear([Date],firstDayofWeek), Int64.Type),
+				    Week = Table.AddColumn(#"Inserted Week of Year", "Week", each "WK"&Number.ToText([Week of Year])),
+				    #"Inserted Week of Month" = Table.AddColumn(Week, "Week of Month", each Date.WeekOfMonth([Date],firstDayofWeek), Int64.Type),
+				    #"Inserted Start of Week" = Table.AddColumn(#"Inserted Week of Month", "Start of Week", each Date.StartOfWeek([Date],firstDayofWeek), type date),
+				    #"Inserted End of Week" = Table.AddColumn(#"Inserted Start of Week", "End of Week", each Date.EndOfWeek([Date],firstDayofWeek), type date),
+				    #"Day Offset" = Table.AddColumn(#"Inserted End of Week", "Day Offset", each [Date]-Today),
+				    #"Month Offset" = Table.AddColumn(#"Day Offset", "Month Offset", each (([Year]-Date.Year(Today))*12) + ([Months]-Date.Month(Today))),
+				    #"Year Offset" = Table.AddColumn(#"Month Offset", "Year Offset", each [Year]-Date.Year(Today)),
+				    #"Quarter Offset" = Table.AddColumn(#"Year Offset", "Quarter Offset", each (([Year]-Date.Year(Today))*4) + ([Quarters]-Date.QuarterOfYear(Today))),
+				    #"Week Offset" = Table.AddColumn(#"Quarter Offset", "Week Offset", each (Date.StartOfWeek([Start of Week])-Date.StartOfWeek(Today))/7),
+				    YYMM = Table.AddColumn(#"Week Offset", "YYMM", each Date.ToText([Date],"yyyy MMM")),
+				    YearMonth = Table.AddColumn(YYMM, "YearMonth", each Date.ToText([Date],"yyyyMM")),
+				    MTD = Table.AddColumn(YearMonth, "Is_MTD", each if Date.IsInCurrentMonth([Date]) and [Date]<=Today then "Y" else "N"),
+				    QTD = Table.AddColumn(MTD, "Is_QTD", each if Date.IsInCurrentQuarter([Date]) and [Date]<=Today then "Y" else "N"),
+				    YTD = Table.AddColumn(QTD, "Is_YTD", each if Date.IsInYearToDate([Date]) then "Y" else "N"),
+				    FYear = Table.AddColumn(YTD, "FYear", each if [Months] > 6 then "FY" & Text.End(Text.From([Year]), 2) & Number.ToText(Number.FromText(Text.End(Text.From([Year]), 2))+1) else "FY" & Number.ToText(Number.FromText(Text.End(Text.From([Year]), 2))-1) & Text.End(Text.From([Year]), 2)),
+				    FQuarter = Table.AddColumn(FYear, "FQuarter", each if [Months] > 9 then "OND" else if [Months] > 6 then "JAS" else if [Months] > 3 then "AMJ" else "JFM"),
+				    FQuarters = Table.AddColumn(FQuarter, "FQuarters", each if [Months] > 9 then 2 else if [Months] > 6 then 1 else if [Months] > 3 then 4 else 3),
+				    FYQuarter = Table.AddColumn(FQuarters, "FYQuarter", each Text.End(Text.From([FYear]),4) &"'"& [FQuarter]),
+				    YearWeek = Table.AddColumn(FYQuarter, "YearWeek", each Number.ToText([Year]) &" "& [Week]),
+				    YearWeeks = Table.AddColumn(YearWeek, "YearWeeks", each [Year]*100+[Week of Year]),
+				    //if (Date.Year([Date])*12+Date.Month([Date])) <= (Date.Year(Today)*12+Date.Month(Today)) then "Y" else "N")
+				    #"Is_T-1" = Table.AddColumn(YearWeeks, "Is_T-1", each if [Date] < Today then "Y" else "N"),
+				    FY = Table.AddColumn(#"Is_T-1", "FY", each if Date.Month([Date]) >= 7 then "FY" & Text.From(Date.Year([Date]) + 1) else "FY" & Text.From(Date.Year([Date]))),
+				    Is_FY = Table.AddColumn(FY, "Is_FY", each if Date.Month(Today) >= 10 then "FY" & Text.From(Date.Year(Today) + 1) else "FY" & Text.From(Date.Year(Today))),
+				    Is_FYTD = Table.AddColumn(Is_FY, "Is_FYTD", each if [FY] = [Is_FY] and [Date] <= Today then "Y" else "N"),
+				    #"Removed Columns" = Table.RemoveColumns(Is_FYTD,{"Is_FY"}),
+				    #"CY Half" = Table.AddColumn(#"Removed Columns", "YearHalf", each if [Months] > 6 then Text.From([Year])&"-2H" else Text.From([Year])&"-1H"),
+				    #"FY Half" = Table.AddColumn(#"CY Half", "FYHalf", each if [Months] > 6 then [FYear]&"-1H" else [FYear]&"-2H"),
+				    #"Day of Quarter" = Table.AddColumn(#"FY Half", "Day of Quarter", each Duration.Days([Date] - Date.StartOfQuarter([Date])) + 1),
+				    #"Week of Quarter" = Table.AddColumn(#"Day of Quarter", "Week of Quarter", each Date.WeekOfYear([Date], Day.Monday) - Date.WeekOfYear(Date.StartOfQuarter([Date]), Day.Monday) + 1),
+				    #"Month of Quarter" = Table.AddColumn(#"Week of Quarter", "Month of Quarter", each Number.Mod(Date.Month([Date]) - 1, 3) + 1),
+				    YearMonths = Table.AddColumn(#"Month of Quarter", "YearMonths", each Date.Year([Date])*12+Date.Month([Date])),
+				    YearQuarters = Table.AddColumn(YearMonths, "YearQuarters", each Date.Year([Date])*4+Date.QuarterOfYear([Date])),
+				    YMonth = Table.AddColumn(YearQuarters, "YMonth", each if Date.IsInCurrentMonth([Date]) then "Current Month" else [YearMonth]),
+				    YM = Table.DuplicateColumn(YMonth, "Start of Month", "YM"),
+				    #"Changed Type5" = Table.TransformColumnTypes(YM,{{"Day Offset", Int64.Type}, {"Month Offset", Int64.Type}, {"Year Offset", Int64.Type}, {"Quarter Offset", Int64.Type}, {"Quarters", Int64.Type}, {"FQuarters", Int64.Type}, {"YearMonth", Int64.Type}, {"YearWeeks", Int64.Type}, {"Week Offset", Int64.Type}, {"Day of Quarter", Int64.Type}, {"Week of Quarter", Int64.Type}, {"Month of Quarter", Int64.Type}, {"YearMonths", Int64.Type}, {"YearQuarters", Int64.Type}, {"YMonth", type text}})
+				in
+				    #"Changed Type5"
+
+	extendedProperty IsCuratedForDataSearch = {}
+
+	calendar Gregorian
+		lineageTag: 269aeab4-6039-41b0-a043-861768656d95
+
+		calendarColumnGroup = year
+			primaryColumn: Year
+
+		calendarColumnGroup = quarter
+			primaryColumn: YearQuarters
+			associatedColumn: YearQuarter
+
+		calendarColumnGroup = quarterOfYear
+			primaryColumn: Quarters
+			associatedColumn: Quarter
+
+		calendarColumnGroup = month
+			primaryColumn: YearMonth
+			associatedColumn: YearMonths
+			associatedColumn: YYMM
+			associatedColumn: YMonth
+			associatedColumn: YM
+
+		calendarColumnGroup = monthOfYear
+			primaryColumn: Months
+			associatedColumn: Month
+
+		calendarColumnGroup = monthOfQuarter
+			primaryColumn: 'Month of Quarter'
+
+		calendarColumnGroup = date
+			primaryColumn: Date
+
+		calendarColumnGroup = dayOfYear
+			primaryColumn: 'Day of Year'
+
+		calendarColumnGroup = dayOfQuarter
+			primaryColumn: 'Day of Quarter'
+
+		calendarColumnGroup = dayOfMonth
+			primaryColumn: 'Day of Month'
+
+	calendar Weekly
+		lineageTag: 9645b558-da9b-4ecf-9f24-07c455ef6d07
+
+		calendarColumnGroup = year
+			primaryColumn: Year
+
+		calendarColumnGroup = month
+			primaryColumn: YearMonth
+			associatedColumn: YYMM
+			associatedColumn: YearMonths
+			associatedColumn: YMonth
+			associatedColumn: YM
+
+		calendarColumnGroup = week
+			primaryColumn: YearWeeks
+			associatedColumn: YearWeek
+
+		calendarColumnGroup = weekOfYear
+			primaryColumn: 'Week of Year'
+
+		calendarColumnGroup = date
+			primaryColumn: Date
+
+		calendarColumnGroup = dayOfWeek
+			primaryColumn: 'Day of Week'
+			associatedColumn: WeekDay
+
+	calendar Fiscal
+		lineageTag: 97ad167d-7b10-47d3-9d58-47585ae54c1e
+
+		calendarColumnGroup = year
+			primaryColumn: FYear
+			associatedColumn: FY
+
+		calendarColumnGroup = quarter
+			primaryColumn: FYQuarter
+
+		calendarColumnGroup = quarterOfYear
+			primaryColumn: FQuarters
+			associatedColumn: FQuarter
+
+		calendarColumnGroup = month
+			primaryColumn: YearMonth
+			associatedColumn: YYMM
+			associatedColumn: YearMonths
+			associatedColumn: YMonth
+			associatedColumn: YM
+
+		calendarColumnGroup = date
+			primaryColumn: Date
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

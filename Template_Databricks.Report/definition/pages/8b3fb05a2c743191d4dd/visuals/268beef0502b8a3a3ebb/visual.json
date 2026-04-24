@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "268beef0502b8a3a3ebb",
+  "position": {
+    "x": 432,
+    "y": 16,
+    "z": 1000,
+    "height": 512,
+    "width": 352
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RTT"
+                    }
+                  },
+                  "Property": "category"
+                }
+              },
+              "queryRef": "RTT.category",
+              "nativeQueryRef": "category"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "RTT"
+                        }
+                      },
+                      "Property": "pos_value"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(RTT.pos_value)",
+              "nativeQueryRef": "Sum of pos_value"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RTT"
+                    }
+                  },
+                  "Property": "POS IYA"
+                }
+              },
+              "queryRef": "RTT.POS IYA",
+              "nativeQueryRef": "POS IYA"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "RTT"
+                      }
+                    },
+                    "Property": "pos_value"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

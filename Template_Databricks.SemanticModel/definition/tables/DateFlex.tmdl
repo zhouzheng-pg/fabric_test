@@ -1,0 +1,55 @@
+table DateFlex
+	lineageTag: c496e784-980d-429e-9e3a-d61b5b6767e1
+
+	measure 'Rows Flex' = CALCULATE([Row#],REMOVEFILTERS('Date'),USERELATIONSHIP('Date'[Date],'DateFlex'[Flex YA Date]))
+		formatString: 0
+		lineageTag: c15a40a1-6ae8-44d0-933d-89f9f139244d
+
+	column 'Flex YA Date'
+		formatString: yyyy-mm-dd
+		lineageTag: cf29f50a-980a-4b26-81f7-40dcc31ab5be
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Flex YA Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		formatString: 0
+		lineageTag: 7642d09a-1a9f-47a5-b6b0-ba7145573fcc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = User
+
+	column FYear
+		lineageTag: a6213e7a-3de8-4f22-80e4-4ad5c1d6f4aa
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [FYear]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		formatString: 0
+		lineageTag: 4af8f97b-2390-4ab7-997f-7e8a6824ddd6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = User
+
+	partition DateFlex = calculated
+		mode: import
+		source =
+				SELECTCOLUMNS(FILTER('Date','Date'[Is_T-1]="Y"),
+				    "Flex YA Date",'Date'[Date],"Year",'Date'[Year],"FYear",'Date'[FYear],"YearMonth",'Date'[YearMonth]
+				)
+
+	annotation PBI_Id = 0cedefc016924f8b855d9ad107875654
+

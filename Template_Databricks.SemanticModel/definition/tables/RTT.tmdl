@@ -1,0 +1,170 @@
+table RTT
+	lineageTag: ecd76a3b-0cae-4736-87c8-876bc37f59d7
+
+	measure 'POS IYA' = DIVIDE(SUM(RTT[pos_value]),SUM(RTT[pos_value_ya]))*100
+		formatString: 0
+		lineageTag: c2660b60-4ffb-4f88-9521-9603f22b2f4a
+
+	column brand_code
+		dataType: string
+		lineageTag: a7e18b56-c85d-4c61-93d9-2e6e52c23630
+		summarizeBy: none
+		sourceColumn: brand_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column trans_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 2f62ea9c-5162-4ff6-95b9-1b0acd0b7c4d
+		summarizeBy: none
+		sourceColumn: trans_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column channel
+		dataType: string
+		lineageTag: 9e18613d-dd57-4dd2-b8ad-3c0757ed728d
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column banner
+		dataType: string
+		lineageTag: 1356a4f2-8cfc-4f2f-8131-5e33615db184
+		summarizeBy: none
+		sourceColumn: banner
+
+		annotation SummarizationSetBy = Automatic
+
+	column category2_code
+		dataType: string
+		lineageTag: 80bc3f6e-b07e-499f-951d-caf8ce7ecaa9
+		summarizeBy: none
+		sourceColumn: category2_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: c19beb5d-b676-4366-934b-faa7f82afc32
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: 1f963909-1848-47f7-b3e4-090fc0c56856
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column giv_value
+		dataType: double
+		formatString: #,0
+		lineageTag: d3f43b8e-b560-4824-9b6a-9cbea90c1615
+		summarizeBy: sum
+		sourceColumn: giv_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column giv_value_ya
+		dataType: double
+		lineageTag: 6309c1bb-4de5-4e42-8834-cd2d19a160cf
+		summarizeBy: sum
+		sourceColumn: giv_value_ya
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column giv_oo
+		dataType: double
+		lineageTag: 9bf88dd2-522d-4b88-b07d-e0c0b1b2fd51
+		summarizeBy: sum
+		sourceColumn: giv_oo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column giv_oo_ya
+		dataType: double
+		lineageTag: 847f4b28-9da4-494e-b235-93d580fc72b7
+		summarizeBy: sum
+		sourceColumn: giv_oo_ya
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pos_value
+		dataType: double
+		formatString: #,0
+		lineageTag: 4fc3c258-038b-4439-8810-10baa9f6f032
+		summarizeBy: sum
+		sourceColumn: pos_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column pos_value_ya
+		dataType: double
+		lineageTag: b172c5b8-f9fc-45fe-8024-7eb8e02a97a1
+		summarizeBy: sum
+		sourceColumn: pos_value_ya
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition RTT = m
+		mode: import
+		queryGroup: Fact
+		source = ```
+				let
+				    RunSQL = Value.NativeQuery(Databricks.Catalogs(_DBRServer,_DBRPath,
+				        [Catalog=_DBRCatalog, Database=null, EnableAutomaticProxyDiscovery=null]){[Name=_DBRCatalog,Kind="Database"]}[Data],"
+				SELECT
+				     cast(trans_date as date)
+				    ,org_channel_name                          as channel
+				    ,org_banner_name                           as banner
+				    ,product_gtin_category_2_code              as category2_code
+				    ,product_gtin_category_2_name_en           as category
+				    ,product_gtin_brand_code                   as brand_code
+				    ,product_gtin_brand_en                     as brand
+				
+				    ,SUM(spm_no_transit_gross_invoice_value)        as giv_value
+				    ,SUM(spm_ya_no_transit_gross_invoice_value)     as giv_value_ya
+				    ,SUM(spm_mtd_open_order_gross_invoice_value)    as giv_oo
+				    ,SUM(spm_ya_mtd_open_order_gross_invoice_value) as giv_oo_ya
+				
+				    ,SUM(pos_offtake_value)                         as pos_value
+				    ,SUM(pos_ya_offtake_value)                      as pos_value_ya
+				
+				FROM cdl_corp_prd.ds.tb_corp_prod_sales_inv_giv_gtin_daily_fact
+				WHERE 1=1
+				  AND trans_date >= '2026-01-01'
+				  AND trans_date < current_date()
+				GROUP BY ALL
+				    ", null, [EnableFolding=true]),
+				    FilterLogic = 
+				        if _FilterRows <= 0
+				        then 
+				            RunSQL
+				        else 
+				            Table.FirstN(RunSQL,_FilterRows)
+				in
+				    FilterLogic
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
