@@ -5,6 +5,26 @@ table RTT
 		formatString: 0
 		lineageTag: c2660b60-4ffb-4f88-9521-9603f22b2f4a
 
+	/// GIV Index Year-Ago. Calculates current Gross Invoice Value as a percentage of the prior-year equivalent. A value of 100 = flat vs prior year; >100 = growth.
+	measure 'GIV IYA' = DIVIDE(SUM(RTT[giv_value]), SUM(RTT[giv_value_ya])) * 100
+		formatString: 0
+		lineageTag: 719e5568-e9d9-4cf0-8992-9a33fbe057c6
+
+	/// 日销POS. Average daily Point-of-Sale offtake value over the selected period.
+	measure 'POS Daily' = DIVIDE(SUM(RTT[pos_value]), DISTINCTCOUNT(RTT[trans_date]))
+		formatString: #,0
+		lineageTag: aead7940-d5fb-4b4c-9f01-e02fa16203ff
+
+	/// Fiscal Year-to-Date POS. Total Point-of-Sale offtake value from the start of the current fiscal year to the latest available date.
+	measure 'FYTD POS' = CALCULATE(SUM(RTT[pos_value]), 'Date'[Is_FYTD] = "Y")
+		formatString: #,0
+		lineageTag: 7846edef-d40f-45f8-90c4-0c1eebaf9881
+
+	/// Fiscal Year-to-Date GIV. Total Gross Invoice Value from the start of the current fiscal year to the latest available date.
+	measure 'FYTD GIV' = CALCULATE(SUM(RTT[giv_value]), 'Date'[Is_FYTD] = "Y")
+		formatString: #,0
+		lineageTag: e559e570-ae5e-44d2-838b-782e9fe7cc9e
+
 	column brand_code
 		dataType: string
 		lineageTag: a7e18b56-c85d-4c61-93d9-2e6e52c23630

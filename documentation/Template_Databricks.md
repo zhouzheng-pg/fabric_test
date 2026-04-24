@@ -20,7 +20,7 @@ The **Template_Databricks** semantic model is a sales analytics model that conne
 |---|---|
 | Tables | 7 |
 | Relationships | 3 |
-| Measures | 3 |
+| Measures | 7 |
 | Row-Level Security Roles | 0 |
 | Primary Data Source | Azure Databricks (Unity Catalog `bi_gm_prd`) |
 | Secondary Data Source | SharePoint Online |
@@ -228,6 +228,66 @@ POS IYA = DIVIDE(SUM(RTT[pos_value]), SUM(RTT[pos_value_ya])) * 100
 | Property | Value |
 |---|---|
 | Format String | `0` |
+| Display Folder | *(none)* |
+
+---
+
+### GIV IYA *(table: RTT)*
+
+**Business Logic:** GIV Index Year-Ago. Calculates current Gross Invoice Value as a percentage of the prior-year equivalent. A value of 100 = flat vs prior year; >100 = growth.
+
+```dax
+GIV IYA = DIVIDE(SUM(RTT[giv_value]), SUM(RTT[giv_value_ya])) * 100
+```
+
+| Property | Value |
+|---|---|
+| Format String | `0` |
+| Display Folder | *(none)* |
+
+---
+
+### POS Daily *(table: RTT)* — 日销POS
+
+**Business Logic:** Average daily Point-of-Sale offtake value over the selected period. Divides total POS value by the count of distinct transaction dates to produce a per-day average.
+
+```dax
+POS Daily = DIVIDE(SUM(RTT[pos_value]), DISTINCTCOUNT(RTT[trans_date]))
+```
+
+| Property | Value |
+|---|---|
+| Format String | `#,0` |
+| Display Folder | *(none)* |
+
+---
+
+### FYTD POS *(table: RTT)*
+
+**Business Logic:** Fiscal Year-to-Date POS. Total Point-of-Sale offtake value from the start of the current fiscal year to the latest available date. Uses the `Date[Is_FYTD]` flag column to restrict the calculation to the FYTD window regardless of any date slicer selection.
+
+```dax
+FYTD POS = CALCULATE(SUM(RTT[pos_value]), 'Date'[Is_FYTD] = "Y")
+```
+
+| Property | Value |
+|---|---|
+| Format String | `#,0` |
+| Display Folder | *(none)* |
+
+---
+
+### FYTD GIV *(table: RTT)*
+
+**Business Logic:** Fiscal Year-to-Date GIV. Total Gross Invoice Value from the start of the current fiscal year to the latest available date. Uses the `Date[Is_FYTD]` flag column to restrict the calculation to the FYTD window regardless of any date slicer selection.
+
+```dax
+FYTD GIV = CALCULATE(SUM(RTT[giv_value]), 'Date'[Is_FYTD] = "Y")
+```
+
+| Property | Value |
+|---|---|
+| Format String | `#,0` |
 | Display Folder | *(none)* |
 
 ---
