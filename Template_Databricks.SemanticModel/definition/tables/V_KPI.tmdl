@@ -1,0 +1,49 @@
+table V_KPI
+	lineageTag: 72b1a83a-59eb-4d08-a4dd-20ef3f89ea66
+
+	column V_KPI
+		lineageTag: ad47f299-b673-45f2-9b65-4d136e3707a1
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: sort
+
+		relatedColumnDetails
+			groupByColumn: KPI
+
+		annotation SummarizationSetBy = Automatic
+
+	column KPI
+		isHidden
+		lineageTag: c0dde0d4-6ce6-497d-a75e-dc8e47b11f95
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: sort
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column sort
+		isHidden
+		formatString: 0
+		lineageTag: cbb6f0bb-4782-47d8-9947-f5755a83de6a
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition V_KPI = calculated
+		mode: import
+		source =
+				{
+				    ("POS IYA", NAMEOF('RTT'[POS IYA]), 0),
+				    ("POS Daily", NAMEOF('RTT'[POS Daily]), 1),
+				    ("FYTD POS", NAMEOF('RTT'[FYTD POS]), 2)
+				}
+
+	annotation PBI_Id = 28d3c8ca620b4b30ba6737f21bc06c33
+

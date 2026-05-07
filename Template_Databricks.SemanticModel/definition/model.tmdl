@@ -42,9 +42,9 @@ ref table RTT
 ref table V_Meta
 ref table Date
 ref table V_Date
+ref table V_KPI
 ref table DateFlex
 ref table V_Unit
 ref table DatePeriod
 
 ref cultureInfo en-US
-

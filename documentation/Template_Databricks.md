@@ -201,6 +201,18 @@ Static calculated table that lets users choose the numeric display unit: million
 
 ---
 
+### V_KPI *(Field Parameter – POS KPI Measures)*
+
+Calculated field-parameter table enabling report users to switch across POS-related KPI measures.
+
+| Column | Data Type | Description |
+|---|---|---|
+| V_KPI | Text | Display label for the selected KPI measure |
+| KPI | (hidden) | Measure reference used by the parameter |
+| sort | Integer (hidden) | Sort order |
+
+---
+
 ### V_Meta *(Model Metadata)*
 
 Calculated table that surfaces model metadata (calculated columns, measures, and calculated tables) using `INFO.VIEW.*` functions. Useful for documentation and governance tooling.
@@ -407,6 +419,7 @@ The following tables are generated entirely within the model (no external source
 | DateFlex | DAX (Calculated Table) | Filters `Date` table to T−1 dates for flexible year-ago comparisons |
 | V_Date | DAX (Calculated Table) | Field parameter for dynamic date granularity selection |
 | V_Unit | DAX (Calculated Table) | Static lookup for display unit selection (MM / M / Base) |
+| V_KPI | DAX (Calculated Table) | Field parameter for POS-related KPI measure selection |
 | V_Meta | DAX (Calculated Table) | Model metadata surfaced via `INFO.VIEW.*` functions |
 
 ---
